@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_request_form" model="ir.ui.view">
+            <field name="name">purchase_request_form</field>
+            <field name="model">purchase.request</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Requests">
+                    <group>
+                        <button name="button_submit_approval" class="oe_highlight" type="object"
+                                string="Submit for Approval"
+                                state="draft" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <button name="button_cancel" type="object" string="Cancel"
+                                state="draft" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            <button name="button_approve" type="object" string="Approve"
+                                state="Submit for Approval"
+                                class="btn-primary"
+                                attrs="{'invisible': [('state', '!=', 'Submit for Approval')]}"/>
+
+
+                        <button name="button_reject" string="Reject" type="object"
+                                state="Submit for Approval"
+                                attrs="{'invisible': [('state', '!=', 'Submit for Approval')]}"/>
+
+
+                    </group>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="user_id"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="rejection_reason_id" readonly="1"/>
+                            <field name="total_price"/>
+                            <field name="partner_id"/>
+                            <field name="lines_ids"/>
+                            <field name="state"/>
+
+
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+        <record id="purchase_request_tree" model="ir.ui.view">
+            <field name="name">purchase_request_tree</field>
+            <field name="model">purchase.request</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Requests">
+                    <field name="user_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="rejection_reason_id"/>
+                    <field name="total_price"/>
+                    <field name="partner_id"/>
+                    <field name="lines_ids"/>
+                    <field name="state"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="purchase_request_action" model="ir.actions.act_window">
+            <field name="name">Purchase</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.request</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+        <menuitem id="orders_menu_root" name="Orders menu" sequence="1"/>
+        <menuitem id="purchase_requests" name="Purchase Requests" parent="orders_menu_root"
+                  action="purchase_request_action" sequence="2"/>
+        <!-- purchaserequests.orderline  -->
+        <record id="order_line_form" model="ir.ui.view">
+            <field name="name">order_line_form</field>
+            <field name="model">purchase.request.line</field>
+            <field name="arch" type="xml">
+                <form string="Order lines">
+                    <sheet>name
+                        <group>
+                            <field name="product_id"/>
+                            <field name="description"/>
+                            <field name="quantity"/>
+                            <field name="cost_price"/>
+                            <field name="total"/>
+                            <field name="purchase_request_id"/>
+
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="order_line_tree" model="ir.ui.view">
+            <field name="name">order_line_tree</field>
+            <field name="model">purchase.request.line</field>
+            <field name="arch" type="xml">
+                <tree string="Order lines">
+                    <field name="description"/>
+                    <field name="product_id"/>
+                    <field name="quantity"/>
+                    <field name="cost_price"/>
+                    <field name="total"/>
+
+                </tree>
+            </field>
+        </record>
+<!--temp-->
+
+    <record id="email_template_purchase_request_approved" model="mail.template">
+      <field name="name">Purchase Request Approved</field>
+      <field name="email_from">{{user.email}}</field>
+      <field name="subject">Purchase Request (${object.name}) Approved</field>
+      <field name="partner_to">${object.requested_by.partner_id.id}</field>
+      <field name="body_html"><![CDATA[
+        <p>Hello ${object.requested_by.name},</p>
+        <p>Your purchase request "${object.name}" has been approved.</p>
+      ]]></field>
+    </record>
+    </data>
+</odoo>

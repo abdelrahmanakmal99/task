@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+<!--
+          <record id="object0" model="purchaserequests.purchaserequests">
+           # from odoo import api, fields, models
+#
+#
+# class Purchaserequest(models.Model):
+#     _name = 'purchaserequests.request'
+#
+#     name = fields.Char(string="Request Name", required=True, help='Long Desc', index=True)
+#     requestedby_id = fields.Many2one('res.users', string="Requested By",
+#                                      default=lambda self: self.env.user)
+#
+#     start_date = fields.Date(string="Start Date", default=fields.Date.today)
+#     end_date = fields.Date(string="End Date")
+#     rejection_reason = fields.Text(string='Rejection Reason')
+#
+#     orderlines_ids = fields.One2many(
+#          'purchaserequests.orderline', 'product_id', string="Purchase request line", )
+#
+#     lines_ids = fields.One2many('purchaserequests.orderline', 'product_id', string="Purchase request line", )
+#
+#
+#     total_price = fields.Float(string="Total Price ", required=True, compute='sum_total')
+#     num_orders = fields.Integer(string="Number of Orders", required=False,
+#                                 compute='_compute_orderline_count')
+# @api.depends('name')
+# def _compute_orderline_count(self):
+#     for record in self:
+#         num_orders = self.env['purchaserequests.orderline'].search_count([('name.id', '=', record.id)])
+#         record.num_orders = num_orders
+#
+#
+# class orderline(models.Model):
+#     _name = 'purchaserequests.orderline'
+#     description = fields.Char(string="Description ")
+#     product_id = fields.Many2one('product.product', required=True)
+#     quantity = fields.Float(string='quantity', default=1)
+#
+#     cost_price = fields.Float(string='cost price', readonly=1)
+#     total = fields.Float(string='Total', readonly=1, compute="_compute_total")
+#
+# @api.depends('cost_price', 'quantity')
+# def _compute_total(self):
+#     for record in self:
+#         record.total = record.quantity * record.cost_price
+#
+          </record>
+-->
+    </data>
+</odoo>
