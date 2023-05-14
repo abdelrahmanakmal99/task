@@ -25,8 +25,8 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'wizard/wizard.xml',
-        'views/views.xml',
+        'Rejection_Reason_wizard/Rejection_Reason_wizard.xml',
+        'views/purchase_request.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode

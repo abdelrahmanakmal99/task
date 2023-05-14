@@ -61,13 +61,7 @@ class Purchaserequest(models.Model):
     def button_reject(self):
         button = self.env.ref('purchaserequests.wizard_action').read()[0]
         return button
-        print('12321323213123')
 
-    # def action_confirm(self):
-    #     purchaserequests_rejection_reason = self.rejection_reason
-    #     return
-
-    # @api.depends('lines_ids', 'lines_ids.total')
     def compute_sum_total(self):
         for record in self:
             total_p = 0.0

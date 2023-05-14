@@ -2,10 +2,10 @@
 from odoo import api, fields, models
 
 
-class Wizard(models.TransientModel):
-    _name = 'purchase.wizard'
+class RejectionWizard(models.TransientModel):
+    _name = 'purchase.rejection.wizard'
     _inherit = 'mail.thread'
-    _description = 'Purchase Wizard'
+    _description = 'Purchase Rejection wizard'
 
     reject1_id = fields.Many2one('purchase.request.reject.reason')
     rejection_reason = fields.Text(string='Rejection Reason')

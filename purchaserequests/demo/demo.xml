@@ -1,5 +1,6 @@
 <odoo>
     <data>
+
 <!--
           <record id="object0" model="purchaserequests.purchaserequests">
            # from odoo import api, fields, models
